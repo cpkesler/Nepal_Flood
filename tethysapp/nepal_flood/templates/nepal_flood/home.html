@@ -1,0 +1,15 @@
+{% extends "nepal_flood/base.html" %}
+{% load tethys_gizmos %}
+{% load staticfiles %}
+
+{% block app_content %}
+
+<!--div tag for map-->
+    <div id="map" class="map"></div>
+
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+
+{% endblock %}
