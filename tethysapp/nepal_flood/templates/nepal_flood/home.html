@@ -1,15 +1,42 @@
 {% extends "nepal_flood/base.html" %}
 {% load tethys_gizmos %}
 {% load staticfiles %}
+{% block app_navigation_items %}
+<h6>Toggle Layers</h6>
+
+<div align = "left">
+
+  <li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Flood Map</li>
+<div class="foo flood"></div><p class="space">Water</p>
+
+{% endblock %}
 
 {% block app_content %}
+<h5><b>Forecast Slider</b></h5>
+
+<!--Forecast slider bar-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Slider - Snap to increments</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+<p>
+  <label id="label" for="amount">Flood Depth (meters):</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:normal;">
+</p>
+<div id="slider"></div>
+</body>
+</html>
 
 <!--div tag for map-->
     <div id="map" class="map"></div>
-
 {% endblock %}
 
 {% block scripts %}
   {{ block.super }}
-
+  <script src="{% static 'nepal_flood/js/main.js' %}" type="text/javascript"></script>
 {% endblock %}

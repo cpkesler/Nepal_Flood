@@ -8,10 +8,10 @@ class NepalFloodMapViewer(TethysAppBase):
 
     name = 'Nepal Flood Map Viewer'
     index = 'nepal_flood:home'
-    icon = 'nepal_flood/images/icon.gif'
+    icon = 'nepal_flood/images/np.jpg'
     package = 'nepal_flood'
     root_url = 'nepal-flood'
-    color = '#e74c3c'
+    color = '#27afc4'
     description = 'Place a brief description of your app here.'
     enable_feedback = False
     feedback_emails = []

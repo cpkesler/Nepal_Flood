@@ -1,5 +1,29 @@
+/*Spacing for slider bar*/
+#slider {
+width: 100%;
+margin-bottom: 10px;
+}
+
 /*Dimesions of map*/
 #map {
 height: 100%;
 width: 100%;
+}
+
+/*Define size of legend box*/
+.foo {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.flood {
+  background: #1E90FF;
+}
+
+/*Spacing for words next to color boxes on legend (i.e. developed, open space, etc.*/
+.space {
+padding-top: 3px;
 }
