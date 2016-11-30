@@ -35,7 +35,7 @@ layers = [baseLayer, flood];
 
 //Establish the view area. Note the reprojection from lat long (EPSG:4326) to Web Mercator (EPSG:3857)
 var view = new ol.View({
-        center: [9389517, 3198918],
+        center: [9159517, 3238918],
         projection: projection,
         zoom: 10,
     })
@@ -77,7 +77,7 @@ $(function() {
         $( "#amount" ).val( ui.value );
         var decimal_value = ui.value.toString().split(".").join("")
         if (ui.value != 0) {
-            var url = 'http://geoserver.byu.edu/arcgis/services/Nepal_Central/Nepal_' + decimal_value + '/MapServer/WmsServer?';
+            var url = 'http://geoserver.byu.edu/arcgis/services/Nepal_West/Nepal_' + decimal_value + '/MapServer/WmsServer?';
            }
         else {
             var url = ''
