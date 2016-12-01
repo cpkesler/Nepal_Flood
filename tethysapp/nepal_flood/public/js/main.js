@@ -86,7 +86,7 @@ $(function() {
     $( "#slider" ).slider({
       value:0,
       min: 0,
-      max: 8,
+      max: 10,
       step: 1,
       slide: function( event, ui ) {
         $( "#amount" ).val( ui.value );
