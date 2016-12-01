@@ -19,9 +19,59 @@ width: 100%;
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
+/*Choose colors for each legend box*/
 .flood {
   background: #1E90FF;
 }
+
+.high {
+  background: #cccc00;
+}
+
+.medium {
+  background: #ffff66;
+}
+
+.low {
+  background: #ffff99;
+}
+
+.forest {
+  background: #996633;
+}
+
+.shrub {
+  background: #ccffcc;
+}
+
+.grass {
+  background: #66ff33;
+}
+
+.agriculture {
+  background: #ff3300;
+}
+
+.bare {
+  background: #ffe6cc;
+}
+
+.waterbody {
+  background: #1E90FF;
+}
+
+.builtup {
+  background: #336600;
+}
+
+/*Makes a green circle for legend*/
+.circle_green {
+    float: left;
+    width: 5px;
+    padding: 8px 8px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    background-color: #00FF00;
 
 /*Spacing for words next to color boxes on legend (i.e. developed, open space, etc.*/
 .space {

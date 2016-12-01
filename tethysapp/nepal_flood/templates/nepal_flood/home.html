@@ -6,10 +6,28 @@
 
 <div align = "left">
 
-  <li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Flood Map - 90 Meter Resolution</li>
+  <li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
 <div class="foo flood"></div><p class="space">Water</p>
-  <li><input type="checkbox" onClick="floodHiRes.setVisible(!floodHiRes.getVisible());"  id="ch_floodHiRes" name="floodHiRes" checked>Flood Map - 5 Meter Resolution</li>
-<div class="foo flood"></div><p class="space">Water</p>
+
+  <li><input type="checkbox" onClick="building.setVisible(!building.getVisible());"  id="ch_building" name="building" checked>Buildings</li>
+<div class="circle_green"></div><p>&nbsp;Building</p>
+
+  <li><input type="checkbox" onClick="land.setVisible(!land.getVisible());"  id="ch_land" name="land" checked>Land Cover</li>
+<div class="foo forest"></div><p class="space">High</p>
+<div class="foo shrub"></div><p class="space">Medium</p>
+<div class="foo grass"></div><p class="space">Low</p>
+<div class="foo agriculture"></div><p class="space">High</p>
+<div class="foo bare"></div><p class="space">Medium</p>
+<div class="foo waterbody"></div><p class="space">Low</p>
+<div class="foo builtup"></div><p class="space">Low</p>
+
+
+  <li><input type="checkbox" onClick="population.setVisible(!population.getVisible());"  id="ch_population" name="population" checked>Population Density</li>
+<div class="foo high"></div><p class="space">High</p>
+<div class="foo medium"></div><p class="space">Medium</p>
+<div class="foo low"></div><p class="space">Low</p>
+
+
 
 {% endblock %}
 
