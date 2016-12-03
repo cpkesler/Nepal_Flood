@@ -13,9 +13,9 @@ width: 100%;
 /*Define size of legend box*/
 .foo {
   float: left;
-  width: 18px;
-  height: 18px;
-  margin: 5px;
+  width: 12px;
+  height: 12px;
+  margin: 2.5px;
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
@@ -68,12 +68,23 @@ width: 100%;
 .circle_green {
     float: left;
     width: 5px;
-    padding: 8px 8px;
+    padding: 6px 6px;
     border: 1px solid #000000;
     border-radius: 20px;
     background-color: #00FF00;
+}
 
+/*Makes a green circle for legend*/
+.circle_purple {
+    float: left;
+    width: 5px;
+    padding: 6px 6px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    background-color: #800080;
+}
 /*Spacing for words next to color boxes on legend (i.e. developed, open space, etc.*/
 .space {
-padding-top: 3px;
+font-size: 12px;
+margin: 0 !important;
 }

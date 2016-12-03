@@ -16,9 +16,10 @@ var baseLayer = new ol.layer.Tile({
     });
 
 //Define all WMS Sources:
-
+var range_length = range_list.length;
+var range_input = range_list[0].toString().split(".").join("");
 var FloodMap =  new ol.source.TileWMS({
-        url:'',
+        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
 
         params:{
             LAYERS:"0",
@@ -28,7 +29,7 @@ var FloodMap =  new ol.source.TileWMS({
         });
 
 var BuildingPoints =  new ol.source.TileWMS({
-        url:'',
+        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
 
         params:{
             LAYERS:"3",
@@ -38,7 +39,7 @@ var BuildingPoints =  new ol.source.TileWMS({
         });
 
 var LandCover =  new ol.source.TileWMS({
-        url:'',
+        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
 
         params:{
             LAYERS:"1",
@@ -48,7 +49,7 @@ var LandCover =  new ol.source.TileWMS({
         });
 
 var PopulationDensity =  new ol.source.TileWMS({
-        url:'',
+        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
 
         params:{
             LAYERS:"2",
@@ -132,28 +133,31 @@ map.addControl(new ol.control.ZoomSlider());
 
 //Here we set the styles and inital setting for the slider bar (https://jqueryui.com/slider/#steps)
 $(function() {
-
     $( "#slider" ).slider({
-      value:0,
-      min: 0,
-      max: 5,
-      step: 0.25,
+      value:1,
+      min: 1,
+      max: range_length,
+      step: 1,
       slide: function( event, ui ) {
-        $( "#amount" ).val( ui.value );
-        var decimal_value = ui.value.toString().split(".").join("")
-        if (ui.value != 0) {
+        var range_value = range_list[ui.value - 1][1];
+            $( "#amount" ).val( ui.value );
+            console.log(range_value);
+            console.log(ui.value);
+            var decimal_value = range_value.toString().split(".").join("");
             var url = 'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + decimal_value + '/MapServer/WmsServer?';
-           }
-        else {
-            var url = ''
-        }
             FloodMap.setUrl(url);
             BuildingPoints.setUrl(url);
             LandCover.setUrl(url);
-            PopulationDensity.setUrl(url);
+            if($("#ch_population").is(':checked')){
+                PopulationDensity.setUrl(url);
+            }else{
+            population.setVisible(false);
+            };
             BuildingPointsFlood.setUrl(url);
-            $( "#house_count").text(house_count_dict[ui.value]);
+            $( "#house_count").text(range_list[ui.value - 1][2]);
+
       }
     });
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+//$( "#house_count").text(range_list[ui.value - 1][2]);
   });

@@ -1,6 +1,7 @@
 {% extends "nepal_flood/base.html" %}
 {% load tethys_gizmos %}
 {% load staticfiles %}
+
 {% block app_navigation_items %}
 <h6>Toggle Layers</h6>
 
@@ -9,26 +10,40 @@
   <li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
 <div class="foo flood"></div><p class="space">Water</p>
 
-  <li><input type="checkbox" onClick="building.setVisible(!building.getVisible());"  id="ch_building" name="building" checked>Buildings</li>
-<div class="circle_green"></div><p>&nbsp;Building</p>
+  <li><input type="checkbox" onClick="building.setVisible(!building.getVisible()); buildingFlood.setVisible(!buildingFlood.getVisible());" id="ch_building" name="building" checked>Buildings</li>
+<div class="circle_green"></div><p class="space">&nbsp;Non-Flooded Building</p>
+<div class="circle_purple"></div><p class="space">&nbsp;Flooded Building</p>
+
 
   <li><input type="checkbox" onClick="land.setVisible(!land.getVisible());"  id="ch_land" name="land" checked>Land Cover</li>
-<div class="foo forest"></div><p class="space">High</p>
-<div class="foo shrub"></div><p class="space">Medium</p>
-<div class="foo grass"></div><p class="space">Low</p>
-<div class="foo agriculture"></div><p class="space">High</p>
-<div class="foo bare"></div><p class="space">Medium</p>
-<div class="foo waterbody"></div><p class="space">Low</p>
-<div class="foo builtup"></div><p class="space">Low</p>
+<div class="foo forest"></div><p class="space">Forest</p>
+<div class="foo shrub"></div><p class="space">Shrub</p>
+<div class="foo grass"></div><p class="space">Grass</p>
+<div class="foo agriculture"></div><p class="space">Agriculture</p>
+<div class="foo bare"></div><p class="space">Bare Area</p>
+<div class="foo waterbody"></div><p class="space">Waterbody</p>
+<div class="foo builtup"></div><p class="space">Builtup</p>
 
 
-  <li><input type="checkbox" onClick="population.setVisible(!population.getVisible());"  id="ch_population" name="population" checked>Population Density</li>
+  <li><input type="checkbox" onClick="population.setVisible(true);"  id="ch_population" name="population" >Population Density</li>
 <div class="foo high"></div><p class="space">High</p>
 <div class="foo medium"></div><p class="space">Medium</p>
 <div class="foo low"></div><p class="space">Low</p>
 
+<form id='flood-form' action="{% url 'nepal_flood:home' %}" method="get">
+    {% csrf_token %}
+  <h6>Flood View</h6>
+    {% gizmo button get_flood %}
+</form>
 
+<form id='forecast-form' action="{% url 'nepal_flood:home' %}" method="get">
+      {% csrf_token %}
 
+  <h6>Flood Forecast</h6>
+    {% gizmo select_input forecast_select %}
+    {% gizmo button get_forecast %}
+</form>
+</div>
 {% endblock %}
 
 {% block app_content %}
@@ -45,12 +60,24 @@
 </head>
 <body>
 <p>
-  <label id="label" for="amount">Flood Depth (meters):</label>
+  {% if range_list %}
+  <label id="label" for="amount">Flood Date (day):</label>
+
+  {% else %}
+  <label id="label" for="amount">Flood Depth (meter):</label>
+  {% endif %}
+
   <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:normal;">
 </p>
 <div id="slider"></div>
 </body>
 </html>
+{%if range_list %}
+<p>Start Date: December 6, 2016.</p>
+{% endif %}
+ <p>Number of houses impacted: <span id="house_count">{{house_count_dict.0}}</span></p>
+
+
 
 <!--div tag for map-->
     <div id="map" class="map"></div>
@@ -58,5 +85,15 @@
 
 {% block scripts %}
   {{ block.super }}
+{% if range_list %}
+<script>
+  var range_list = {{ range_list }};
+</script>
+  <script src="{% static 'nepal_flood/js/forecast.js' %}" type="text/javascript"></script>
+{% else %}
+<script>
+  var house_count_dict = {{ house_count_dict }};
+</script>
   <script src="{% static 'nepal_flood/js/main.js' %}" type="text/javascript"></script>
+{% endif %}
 {% endblock %}
