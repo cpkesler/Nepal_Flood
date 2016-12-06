@@ -79,8 +79,7 @@
 <p>Start Date: December 6, 2016.</p>
 {% endif %}
  <p>Number of houses impacted: <span id="house_count">{{house_count_dict.0}}</span></p>
-
-
+ <p>Percent of agriculture impacted: <span id="agriculture_count">{{agriculture_count_dict.0}}</span>%</p>
 
 <!--div tag for map-->
     <div id="map" class="map"></div>
@@ -96,6 +95,7 @@
 {% else %}
 <script>
   var house_count_dict = {{ house_count_dict }};
+  var agriculture_count_dict = {{ agriculture_count_dict }};
 </script>
   <script src="{% static 'nepal_flood/js/main.js' %}" type="text/javascript"></script>
 {% endif %}

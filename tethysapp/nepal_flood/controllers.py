@@ -52,13 +52,36 @@ def home(request):
         5: 225
     }
 
-    # house_count = [4,4,4,4,19,19,19,19,61,61,61,61,142,142,142,143,224,224,224,225]
+    agriculture_count_dict = {
+        0: 0,
+        0.25: 6.3,
+        0.5: 6.3,
+        0.75: 6.3,
+        1: 6.3,
+        1.25: 16.3,
+        1.5: 16.3,
+        1.75: 16.3,
+        2.0: 16.3,
+        2.25: 28.2,
+        2.5: 28.2,
+        2.75: 28.2,
+        3: 28.3,
+        3.25: 38.6,
+        3.5: 38.6,
+        3.75: 38.6,
+        4: 38.7,
+        4.25: 46.9,
+        4.5: 46.9,
+        4.75: 47.0,
+        5: 47.1
+    }
 
     # I'm defining the context here because the items contained in this context are used  below (more items are added further down)
     context = {"forecast_select": forecast_select,
                "get_flood": get_flood,
                "get_forecast": get_forecast,
-                "house_count_dict":house_count_dict}
+               "house_count_dict":house_count_dict,
+               "agriculture_count_dict": agriculture_count_dict}
 
     # Get input from gizmos
     forecast_range = None
