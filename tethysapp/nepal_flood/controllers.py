@@ -93,15 +93,16 @@ def home(request):
         if forecast_range:
             time_series_flood = [1.25, 1.25, 1.5, 2, 2.75, 3, 2.75, 2.5, 2.25, 1.75, 1.75, 1.5, 1.5, 1.5]
             house_count = [19,19,19,19,61,61,61,61,61,61,19,19,19,19]
+            agriculture_count = [16.3, 16.3, 16.3, 16.3, 28.2, 28.3, 28.2, 28.2, 28.2, 16.3, 16.3, 16.3, 16.3]
             flood_date = ["7-Aug-2003","8-Aug-2003","9-Aug-2003","10-Aug-2003","11-Aug-2003","12-Aug-2003",
                           "13-Aug-2003","14-Aug-2003","15-Aug-2003","16-Aug-2003","17-Aug-2003","18-Aug-2003",
                           "19-Aug-2003","20-Aug-2003" ]
 
             forecast_range = range(1, 15)
-            range_list = [list(a) for a in zip(forecast_range, time_series_flood, house_count)]
+            range_list = [list(a) for a in zip(forecast_range, time_series_flood, house_count, agriculture_count)]
             context["forecast_range"] = forecast_range
             context["range_list"] = range_list
             context["flood_date"] = flood_date
-
+            # context["agriculture_count"] = agriculture_count
 
     return render(request, 'nepal_flood/home.html', context)

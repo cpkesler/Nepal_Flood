@@ -153,6 +153,8 @@ $(function() {
             };
             BuildingPointsFlood.setUrl(url);
             $( "#house_count").text(range_list[ui.value - 1][2]);
+            $( "#agriculture_count").text(range_list[ui.value - 1][3]);
+
 
       }
     });
