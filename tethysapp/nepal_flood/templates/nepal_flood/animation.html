@@ -1,0 +1,68 @@
+{% extends "nepal_flood/base.html" %}
+{% load tethys_gizmos %}
+{% load staticfiles %}
+
+{% block app_navigation_items %}
+{% endblock %}
+
+{% block app_content %}
+<head>
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">-->
+    <!--<title>Well completion dates for the Hugoton Gas Field Over Time</title>-->
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+<style>
+      html, body, #mapDiv {
+        padding:0;
+        margin:0;
+        height:100%;
+      }
+
+      #mapDiv {
+        position: relative;
+      }
+
+      #bottomPanel {
+        left: 50%;
+        margin: 0 auto;
+        margin-left: -500px;
+        position: absolute;
+        bottom: 2.5em;
+      }
+
+      #timeInfo{
+        border-radius: 4px;
+        border: solid 2px #ccc;
+        background-color: #fff;
+        display: block;
+        padding: 5px;
+        position: relative;
+        text-align: center;
+        width: 1000px;
+        z-index: 99;
+      }
+    </style>
+  </head>
+<body class="claro">
+
+    <div id="mapDiv">
+      <div id="bottomPanel">
+        <div id="timeInfo">
+          <div>Nepal West Hi Res Flood Animation <span id="daterange"> Smaple</span></div>
+          <div id="timeSliderDiv"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script src="{% static 'nepal_flood/js/animation.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+{% endblock %}

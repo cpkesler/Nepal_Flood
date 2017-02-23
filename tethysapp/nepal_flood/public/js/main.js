@@ -156,8 +156,8 @@ $(function() {
             population.setVisible(false);
             };
             BuildingPointsFlood.setUrl(url);
-            $( "#house_count").text(house_count_dict[ui.value]);
-            $( "#agriculture_count").text(agriculture_count_dict[ui.value]);
+//            $( "#house_count").text(house_count_dict[ui.value]);
+//            $( "#agriculture_count").text(agriculture_count_dict[ui.value]);
       }
     });
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );

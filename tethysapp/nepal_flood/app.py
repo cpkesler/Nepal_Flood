@@ -15,7 +15,6 @@ class NepalFloodMapViewer(TethysAppBase):
     description = 'Place a brief description of your app here.'
     enable_feedback = False
     feedback_emails = []
-
         
     def url_maps(self):
         """
@@ -26,6 +25,8 @@ class NepalFloodMapViewer(TethysAppBase):
         url_maps = (UrlMap(name='home',
                            url='nepal-flood',
                            controller='nepal_flood.controllers.home'),
+                    UrlMap(name='animation',
+                           url='animation',
+                           controller='nepal_flood.controllers.animation')
         )
-
         return url_maps

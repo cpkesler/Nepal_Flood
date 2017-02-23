@@ -152,8 +152,8 @@ $(function() {
             population.setVisible(false);
             };
             BuildingPointsFlood.setUrl(url);
-            $( "#house_count").text(range_list[ui.value - 1][2]);
-            $( "#agriculture_count").text(range_list[ui.value - 1][3]);
+//            $( "#house_count").text(range_list[ui.value - 1][2]);
+//            $( "#agriculture_count").text(range_list[ui.value - 1][3]);
 
 
       }
