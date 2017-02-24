@@ -15,6 +15,10 @@ var baseLayer = new ol.layer.Tile({
         })
     });
 
+//var baseLayer = new ol.layer.Tile({
+//    source:new ol.source.OSM()
+//});
+
 //Define all WMS Sources:
 var range_length = range_list.length;
 var range_input = range_list[0].toString().split(".").join("");
