@@ -210,10 +210,140 @@ def home(request):
 
 
 
-    # if select_forecast_location == 'nepal2':
-    #
-    #
-    # if select_forecast_location == 'nepal3':
+    if select_forecast_location == 'Kandra':
+        time_series_list_api = []
+        subbasin = "West"
+        reach_id = "4422"
+        forecast_date_start_input = datetime.strptime(forecast_date_start, '%Y-%m-%d').strftime('%Y%m%d.1200')
+        sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=72b145121add58bcc5843044d9f1006d9140b84b".format(
+            subbasin, reach_id, forecast_date_start_input)
+        nepal_sfpt = get_wml_values(sfpt)
+
+        # Plot AHPS flow data
+        timeseries_plot = TimeSeries(
+            height='500px',
+            width='500px',
+            engine='highcharts',
+            title='Streamflow Plot',
+            y_axis_title='Flow',
+            y_axis_units='cms',
+            series=[{
+                'name': 'Streamflow',
+                'data': nepal_sfpt
+            }],
+            colors=['#7cb5ec']
+        )
+        for flow in (i[1] for i in nepal_sfpt):
+            if flow < 3:
+                flow = 0
+            elif flow >= 3 and flow < 5:
+                flow = 0.25
+            elif flow >= 5 and flow < 7:
+                flow = 0.5
+            elif flow >= 7 and flow < 9:
+                flow = 0.75
+            elif flow >= 9 and flow < 11:
+                flow = 1
+            elif flow >= 11 and flow < 13:
+                flow = 1.5
+            elif flow >= 13 and flow < 15:
+                flow = 2
+            elif flow >= 15 and flow < 17:
+                flow = 2.5
+            elif flow >= 17 and flow < 19:
+                flow = 3
+            elif flow >= 19 and flow < 21:
+                flow = 4
+            elif flow >= 21 and flow < 23:
+                flow = 4.25
+            elif flow >= 23 and flow < 25:
+                flow = 4.5
+            elif flow >= 25:
+                flow = 5
+
+            time_series_list_api.append(flow)
+
+        length = len(nepal_sfpt)
+
+        range_slider = range(1, length + 1)
+        range_list = [list(a) for a in zip(range_slider, time_series_list_api)]
+        # print range_list
+
+        forecast_start = nepal_sfpt[0][0]
+
+        # Items to be added to context, but not defined until just before this point
+        context["range_list"] = range_list
+        context["forecast_start"] = forecast_start
+        context["select_forecast_location"] = select_forecast_location
+        context["timeseries_plot"] = timeseries_plot
+
+
+    if select_forecast_location == 'Machali':
+        time_series_list_api = []
+        subbasin = "West"
+        reach_id = "4371"
+        forecast_date_start_input = datetime.strptime(forecast_date_start, '%Y-%m-%d').strftime('%Y%m%d.1200')
+        sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=72b145121add58bcc5843044d9f1006d9140b84b".format(
+            subbasin, reach_id, forecast_date_start_input)
+        nepal_sfpt = get_wml_values(sfpt)
+
+        # Plot AHPS flow data
+        timeseries_plot = TimeSeries(
+            height='500px',
+            width='500px',
+            engine='highcharts',
+            title='Streamflow Plot',
+            y_axis_title='Flow',
+            y_axis_units='cms',
+            series=[{
+                'name': 'Streamflow',
+                'data': nepal_sfpt
+            }],
+            colors=['#7cb5ec']
+        )
+        for flow in (i[1] for i in nepal_sfpt):
+            if flow < 3:
+                flow = 0
+            elif flow >= 3 and flow < 5:
+                flow = 0.25
+            elif flow >= 5 and flow < 7:
+                flow = 0.5
+            elif flow >= 7 and flow < 9:
+                flow = 0.75
+            elif flow >= 9 and flow < 11:
+                flow = 1
+            elif flow >= 11 and flow < 13:
+                flow = 1.5
+            elif flow >= 13 and flow < 15:
+                flow = 2
+            elif flow >= 15 and flow < 17:
+                flow = 2.5
+            elif flow >= 17 and flow < 19:
+                flow = 3
+            elif flow >= 19 and flow < 21:
+                flow = 4
+            elif flow >= 21 and flow < 23:
+                flow = 4.25
+            elif flow >= 23 and flow < 25:
+                flow = 4.5
+            elif flow >= 25:
+                flow = 5
+
+            time_series_list_api.append(flow)
+
+        length = len(nepal_sfpt)
+
+        range_slider = range(1, length + 1)
+        range_list = [list(a) for a in zip(range_slider, time_series_list_api)]
+        # print range_list
+
+        forecast_start = nepal_sfpt[0][0]
+
+        # Items to be added to context, but not defined until just before this point
+        context["range_list"] = range_list
+        context["forecast_start"] = forecast_start
+        context["select_forecast_location"] = select_forecast_location
+        context["timeseries_plot"] = timeseries_plot
 
 
     context["select_location"] = select_location
