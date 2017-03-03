@@ -283,8 +283,8 @@ def home(request):
         subbasin = "West"
         reach_id = "4371"
         forecast_date_start_input = datetime.strptime(forecast_date_start, '%Y-%m-%d').strftime('%Y%m%d.1200')
-        sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=72b145121add58bcc5843044d9f1006d9140b84b".format(
-            subbasin, reach_id, forecast_date_start_input)
+        sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=72b145121add58bcc5843044d9f1006d9140b84b".format(subbasin, reach_id, forecast_date_start_input)
+        print sfpt
         nepal_sfpt = get_wml_values(sfpt)
 
         # Plot AHPS flow data

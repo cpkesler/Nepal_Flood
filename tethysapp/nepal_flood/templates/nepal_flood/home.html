@@ -7,7 +7,9 @@
 
 <div align = "left">
 
-  <li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
+  {% if select_forecast_location == "Rapti"%}
+
+<li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
 <div class="foo flood"></div><p class="space">Water</p>
 
   <li><input type="checkbox" onClick="building.setVisible(!building.getVisible()); buildingFlood.setVisible(!buildingFlood.getVisible());" id="ch_building" name="building" checked>Buildings</li>
@@ -30,6 +32,82 @@
 <div class="foo medium"></div><p class="space">Medium</p>
 <div class="foo low"></div><p class="space">Low</p>
 
+  {% elif select_forecast_location == "Machali"%}
+
+<li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
+<div class="foo flood"></div><p class="space">Water</p>
+
+  <!--<li><input type="checkbox" onClick="building.setVisible(!building.getVisible()); buildingFlood.setVisible(!buildingFlood.getVisible());" id="ch_building" name="building" checked>Buildings</li>-->
+<!--<div class="circle_green"></div><p class="space">&nbsp;Non-Flooded Building</p>-->
+<!--<div class="circle_purple"></div><p class="space">&nbsp;Flooded Building</p>-->
+
+
+  <li><input type="checkbox" onClick="land.setVisible(!land.getVisible());"  id="ch_land" name="land" checked>Land Cover</li>
+<div class="foo forest"></div><p class="space">Forest</p>
+<div class="foo shrub"></div><p class="space">Shrub</p>
+<div class="foo grass"></div><p class="space">Grass</p>
+<div class="foo agriculture"></div><p class="space">Agriculture</p>
+<div class="foo bare"></div><p class="space">Bare Area</p>
+<div class="foo waterbody"></div><p class="space">Waterbody</p>
+<div class="foo builtup"></div><p class="space">Builtup</p>
+
+
+  <!--<li><input type="checkbox" onClick="population.setVisible(true);"  id="ch_population" name="population" >Population Density</li>-->
+<!--<div class="foo high"></div><p class="space">High</p>-->
+<!--<div class="foo medium"></div><p class="space">Medium</p>-->
+<!--<div class="foo low"></div><p class="space">Low</p>-->
+
+
+  {% elif select_location == "Rapti" %}
+<li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
+<div class="foo flood"></div><p class="space">Water</p>
+
+  <li><input type="checkbox" onClick="building.setVisible(!building.getVisible()); buildingFlood.setVisible(!buildingFlood.getVisible());" id="ch_building" name="building" checked>Buildings</li>
+<div class="circle_green"></div><p class="space">&nbsp;Non-Flooded Building</p>
+<div class="circle_purple"></div><p class="space">&nbsp;Flooded Building</p>
+
+
+  <li><input type="checkbox" onClick="land.setVisible(!land.getVisible());"  id="ch_land" name="land" checked>Land Cover</li>
+<div class="foo forest"></div><p class="space">Forest</p>
+<div class="foo shrub"></div><p class="space">Shrub</p>
+<div class="foo grass"></div><p class="space">Grass</p>
+<div class="foo agriculture"></div><p class="space">Agriculture</p>
+<div class="foo bare"></div><p class="space">Bare Area</p>
+<div class="foo waterbody"></div><p class="space">Waterbody</p>
+<div class="foo builtup"></div><p class="space">Builtup</p>
+
+
+  <li><input type="checkbox" onClick="population.setVisible(true);"  id="ch_population" name="population" >Population Density</li>
+<div class="foo high"></div><p class="space">High</p>
+<div class="foo medium"></div><p class="space">Medium</p>
+<div class="foo low"></div><p class="space">Low</p>
+
+  {% elif select_location == "Machali" %}
+<li><input type="checkbox" onClick="flood.setVisible(!flood.getVisible());"  id="ch_flood" name="flood" checked>Banke District Flood</li>
+<div class="foo flood"></div><p class="space">Water</p>
+
+  <!--<li><input type="checkbox" onClick="building.setVisible(!building.getVisible()); buildingFlood.setVisible(!buildingFlood.getVisible());" id="ch_building" name="building" checked>Buildings</li>-->
+<!--<div class="circle_green"></div><p class="space">&nbsp;Non-Flooded Building</p>-->
+<!--<div class="circle_purple"></div><p class="space">&nbsp;Flooded Building</p>-->
+
+
+  <li><input type="checkbox" onClick="land.setVisible(!land.getVisible());"  id="ch_land" name="land" checked>Land Cover</li>
+<div class="foo forest"></div><p class="space">Forest</p>
+<div class="foo shrub"></div><p class="space">Shrub</p>
+<div class="foo grass"></div><p class="space">Grass</p>
+<div class="foo agriculture"></div><p class="space">Agriculture</p>
+<div class="foo bare"></div><p class="space">Bare Area</p>
+<div class="foo waterbody"></div><p class="space">Waterbody</p>
+<div class="foo builtup"></div><p class="space">Builtup</p>
+
+
+  <!--<li><input type="checkbox" onClick="population.setVisible(true);"  id="ch_population" name="population" >Population Density</li>-->
+<!--<div class="foo high"></div><p class="space">High</p>-->
+<!--<div class="foo medium"></div><p class="space">Medium</p>-->
+<!--<div class="foo low"></div><p class="space">Low</p>-->
+  {% endif %}
+
+
 <form id='flood-form' action="{% url 'nepal_flood:home' %}" method="get">
     <h6>Select Location</h6>
     {% gizmo select_input select_location_select %}
@@ -37,7 +115,6 @@
   <h6>Flood View</h6>
     {% gizmo button get_flood %}
 </form>
-
 <form id='forecast-form' action="{% url 'nepal_flood:home' %}" method="get">
       {% csrf_token %}
 
