@@ -6,6 +6,7 @@ from tethys_sdk.gizmos import DatePicker, TimeSeries
 from datetime import datetime, timedelta
 import urllib2
 from owslib.waterml.wml11 import WaterML_1_1 as wml11
+import requests
 
 
 
@@ -67,53 +68,7 @@ def home(request):
 
 
 
-    # house_count_dict = {
-    #     0: 0,
-    #     0.25: 4,
-    #     0.5: 4,
-    #     0.75: 4,
-    #     1: 4,
-    #     1.25: 19,
-    #     1.5:19,
-    #     1.75:19,
-    #     2.0:19,
-    #     2.25: 61,
-    #     2.5: 61,
-    #     2.75: 61,
-    #     3: 61,
-    #     3.25: 142,
-    #     3.5: 142,
-    #     3.75: 142,
-    #     4: 143,
-    #     4.25: 224,
-    #     4.5: 224,
-    #     4.75: 224,
-    #     5: 225
-    # }
-    #
-    # agriculture_count_dict = {
-    #     0: 0,
-    #     0.25: 6.3,
-    #     0.5: 6.3,
-    #     0.75: 6.3,
-    #     1: 6.3,
-    #     1.25: 16.3,
-    #     1.5: 16.3,
-    #     1.75: 16.3,
-    #     2.0: 16.3,
-    #     2.25: 28.2,
-    #     2.5: 28.2,
-    #     2.75: 28.2,
-    #     3: 28.3,
-    #     3.25: 38.6,
-    #     3.5: 38.6,
-    #     3.75: 38.6,
-    #     4: 38.7,
-    #     4.25: 46.9,
-    #     4.5: 46.9,
-    #     4.75: 47.0,
-    #     5: 47.1
-    # }
+
 
     # I'm defining the context here because the items contained in this context are used  below (more items are added further down)
     context = {
@@ -142,11 +97,60 @@ def home(request):
     # Get forecast data
     if select_forecast_location == 'Rapti':
         time_series_list_api = []
+        house_count_list = []
         subbasin = "West"
         reach_id = "4576"
         forecast_date_start_input = datetime.strptime(forecast_date_start, '%Y-%m-%d').strftime('%Y%m%d.1200')
         sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=72b145121add58bcc5843044d9f1006d9140b84b".format(subbasin, reach_id, forecast_date_start_input)
         nepal_sfpt = get_wml_values(sfpt)
+
+        house_count_dict = {
+            0: 0,
+            0.25: 4,
+            0.5: 4,
+            0.75: 4,
+            1: 4,
+            1.25: 19,
+            1.5: 19,
+            1.75: 19,
+            2.0: 19,
+            2.25: 61,
+            2.5: 61,
+            2.75: 61,
+            3: 61,
+            3.25: 142,
+            3.5: 142,
+            3.75: 142,
+            4: 143,
+            4.25: 224,
+            4.5: 224,
+            4.75: 224,
+            5: 225
+        }
+
+        agriculture_count_dict = {
+            0: 0,
+            0.25: 6.3,
+            0.5: 6.3,
+            0.75: 6.3,
+            1: 6.3,
+            1.25: 16.3,
+            1.5: 16.3,
+            1.75: 16.3,
+            2.0: 16.3,
+            2.25: 28.2,
+            2.5: 28.2,
+            2.75: 28.2,
+            3: 28.3,
+            3.25: 38.6,
+            3.5: 38.6,
+            3.75: 38.6,
+            4: 38.7,
+            4.25: 46.9,
+            4.5: 46.9,
+            4.75: 47.0,
+            5: 47.1
+        }
 
         # Plot AHPS flow data
         timeseries_plot = TimeSeries(
@@ -191,11 +195,12 @@ def home(request):
                 flow = 5
 
             time_series_list_api.append(flow)
+            house_count_list.append(house_count_dict[flow])
 
         length = len(nepal_sfpt)
 
         range_slider = range(1, length + 1)
-        range_list = [list(a) for a in zip(range_slider, time_series_list_api)]
+        range_list = [list(a) for a in zip(range_slider, time_series_list_api,house_count_list)]
         # print range_list
 
         forecast_start = nepal_sfpt[0][0]
@@ -204,7 +209,8 @@ def home(request):
         context["range_list"] = range_list
         context["forecast_start"] = forecast_start
         context["select_forecast_location"] = select_forecast_location
-        context["timeseries_plot"]=timeseries_plot
+        context["timeseries_plot"] = timeseries_plot
+        context["house_count_dict"] = house_count_dict
 
 
 
@@ -283,8 +289,9 @@ def home(request):
         subbasin = "West"
         reach_id = "4371"
         forecast_date_start_input = datetime.strptime(forecast_date_start, '%Y-%m-%d').strftime('%Y%m%d.1200')
-        sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=72b145121add58bcc5843044d9f1006d9140b84b".format(subbasin, reach_id, forecast_date_start_input)
-        print sfpt
+        sfpt = requests.get('https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name=Central&reach_id=5&start_folder=most_recent&stat_type=mean', headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
+        # sfpt = "http://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=Nepal&subbasin_name={0}&reach_id={1}&start_folder={2}&stat_type=mean&token=asdfqwer1234".format(subbasin, reach_id, forecast_date_start_input)
+        print sfpt, ' ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'
         nepal_sfpt = get_wml_values(sfpt)
 
         # Plot AHPS flow data
@@ -301,6 +308,7 @@ def home(request):
             }],
             colors=['#7cb5ec']
         )
+        
         for flow in (i[1] for i in nepal_sfpt):
             if flow < 3:
                 flow = 0
