@@ -156,7 +156,7 @@ $(function() {
             population.setVisible(false);
             };
             BuildingPointsFlood.setUrl(url);
-            $( "#house_count").text(house_count_dict[ui.value]);
+//            $( "#house_count").text(house_count_dict[ui.value]);
 //            $( "#agriculture_count").text(agriculture_count_dict[ui.value]);
       }
     });
@@ -198,8 +198,8 @@ $(function() {
 
             pdf.setFontSize(15);
             pdf.setTextColor("black");
-            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
-            pdf.text(25,162,house);
+//            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
+//            pdf.text(25,162,house);
             pdf.text(25,150,"Day of Severe Flood Warning: December 13, 2016");
             pdf.text(25,156,"Forecast Start Date: Decmber 6, 2016");
             pdf.text(25,168,"Emergency Contact Information:")

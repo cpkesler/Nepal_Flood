@@ -32,16 +32,6 @@ var FloodMap =  new ol.source.TileWMS({
         crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
         });
 
-//var BuildingPoints =  new ol.source.TileWMS({
-//        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Macheli/Nepal_' + range_input + '/MapServer/WmsServer?',
-//
-//        params:{
-//            LAYERS:"3",
-////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-//        },
-//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-//        });
-
 var LandCover =  new ol.source.TileWMS({
         url:'http://geoserver.byu.edu/arcgis/services/Nepal_Macheli/macheli_' + range_input + '/MapServer/WmsServer?',
 
@@ -52,59 +42,25 @@ var LandCover =  new ol.source.TileWMS({
         crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
         });
 
-//var PopulationDensity =  new ol.source.TileWMS({
-//        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
-//
-//        params:{
-//            LAYERS:"2",
-////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-//        },
-//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-//        });
-//
-//var BuildingPointsFlood =  new ol.source.TileWMS({
-//        url:'',
-//
-//        params:{
-//            LAYERS:"4",
-////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-//        },
-//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-//        });
-
 var flood = new ol.layer.Tile({
     source:FloodMap
     }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-
-//var building = new ol.layer.Tile({
-//    source:BuildingPointsFlood
-//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
 var land = new ol.layer.Tile({
     source:LandCover
     }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
-//var population = new ol.layer.Tile({
-//    source:PopulationDensity
-//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-//
-//var buildingFlood = new ol.layer.Tile({
-//    source:BuildingPoints
-//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-
 //Set opacity of layers
 flood.setOpacity(0.8);
-//building.setOpacity(0.8);
-//buildingFlood.setOpacity(0.8);
 land.setOpacity(0.7);
-//population.setOpacity(0.7);
+
 
 sources = [FloodMap, LandCover];
 layers = [baseLayer, flood, land];
 
 //Establish the view area. Note the reprojection from lat long (EPSG:4326) to Web Mercator (EPSG:3857)
 var view = new ol.View({
-        center: [8961517, 3349918],
+        center: [8951517, 3349918],
         projection: projection,
         zoom: 12,
     })
@@ -148,14 +104,14 @@ $(function() {
             var decimal_value = range_value.toString().split(".").join("");
             var url = 'http://geoserver.byu.edu/arcgis/services/Nepal_Macheli/macheli_' + decimal_value + '/MapServer/WmsServer?';
             FloodMap.setUrl(url);
-            BuildingPoints.setUrl(url);
+//            BuildingPoints.setUrl(url);
             LandCover.setUrl(url);
-            if($("#ch_population").is(':checked')){
-                PopulationDensity.setUrl(url);
-            }else{
-            population.setVisible(false);
-            };
-            BuildingPointsFlood.setUrl(url);
+//            if($("#ch_population").is(':checked')){
+//                PopulationDensity.setUrl(url);
+//            }else{
+//            population.setVisible(false);
+//            };
+//            BuildingPointsFlood.setUrl(url);
 //            $( "#house_count").text(range_list[ui.value - 1][2]);
 //            $( "#agriculture_count").text(range_list[ui.value - 1][3]);
 
@@ -199,8 +155,8 @@ $(function() {
 
             pdf.setFontSize(15);
             pdf.setTextColor("black");
-            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
-            pdf.text(25,162,house);
+//            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
+//            pdf.text(25,162,house);
             pdf.text(25,150,"Day of Severe Flood Warning: December 13, 2016");
             pdf.text(25,156,"Forecast Start Date: Decmber 6, 2016");
             pdf.text(25,168,"Emergency Contact Information:")
