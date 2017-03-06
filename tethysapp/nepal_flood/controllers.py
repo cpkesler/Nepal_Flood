@@ -134,32 +134,60 @@ def home(request):
         )
 
         for flow in (i[1] for i in nepal_sfpt):
-            if flow < 5:
+            if flow < 3:
                 flow = 0
-            elif flow >= 5 and flow < 25:
+            elif flow >= 3 and flow < 5:
                 flow = 0.25
-            elif flow >= 25 and flow < 46:
+            elif flow >= 5 and flow < 7:
                 flow = 0.5
-            elif flow >= 46 and flow < 96:
+            elif flow >= 7 and flow < 9:
                 flow = 0.75
-            elif flow >= 96 and flow < 250:
+            elif flow >= 9 and flow < 11:
                 flow = 1
-            elif flow >= 250 and flow < 460:
+            elif flow >= 11 and flow < 13:
                 flow = 1.25
-            elif flow >= 460 and flow < 720:
+            elif flow >= 13 and flow < 15:
                 flow = 1.5
-            elif flow >= 720 and flow < 1191:
+            elif flow >= 15 and flow < 24:
                 flow = 1.75
-            elif flow >= 1191 and flow < 1700:
+            elif flow >= 24 and flow < 36:
                 flow = 2
-            elif flow >= 1700 and flow < 2400:
-                flow = 2.25
-            elif flow >= 2400 and flow < 3150:
+            elif flow >= 36 and flow < 51:
                 flow = 2.5
-            elif flow >= 3150 and flow < 4050:
+            elif flow >= 51 and flow < 64:
+                flow = 2.25
+            elif flow >= 64 and flow < 79:
                 flow = 2.75
-            elif flow >= 4050:
+            elif flow >= 79:
                 flow = 3
+
+        # for flow in (i[1] for i in nepal_sfpt):
+        #     if flow < 5:
+        #         flow = 0
+        #     elif flow >= 5 and flow < 25:
+        #         flow = 0.25
+        #     elif flow >= 25 and flow < 46:
+        #         flow = 0.5
+        #     elif flow >= 46 and flow < 96:
+        #         flow = 0.75
+        #     elif flow >= 96 and flow < 250:
+        #         flow = 1
+        #     elif flow >= 250 and flow < 460:
+        #         flow = 1.25
+        #     elif flow >= 460 and flow < 720:
+        #         flow = 1.5
+        #     elif flow >= 720 and flow < 1191:
+        #         flow = 1.75
+        #     elif flow >= 1191 and flow < 1700:
+        #         flow = 2
+        #     elif flow >= 1700 and flow < 2400:
+        #         flow = 2.25
+        #     elif flow >= 2400 and flow < 3150:
+        #         flow = 2.5
+        #     elif flow >= 3150 and flow < 4050:
+        #         flow = 2.75
+        #     elif flow >= 4050:
+        #         flow = 3
 
             time_series_list_api.append(flow)
             # house_count_list.append(house_count_dict[flow])
@@ -267,21 +295,21 @@ def home(request):
             elif flow >= 9 and flow < 11:
                 flow = 1
             elif flow >= 11 and flow < 13:
-                flow = 1.5
+                flow = 1.25
             elif flow >= 13 and flow < 15:
+                flow = 1.5
+            elif flow >= 15 and flow < 24:
+                flow = 1.75
+            elif flow >= 24 and flow < 36:
                 flow = 2
-            elif flow >= 15 and flow < 17:
+            elif flow >= 36 and flow < 51:
                 flow = 2.5
-            elif flow >= 17 and flow < 19:
+            elif flow >= 51 and flow < 64:
+                flow = 2.25
+            elif flow >= 64 and flow < 79:
+                flow = 2.75
+            elif flow >= 79:
                 flow = 3
-            elif flow >= 19 and flow < 21:
-                flow = 4
-            elif flow >= 21 and flow < 23:
-                flow = 4.25
-            elif flow >= 23 and flow < 25:
-                flow = 4.5
-            elif flow >= 25:
-                flow = 5
 
             time_series_list_api.append(flow)
             # house_count_list.append(house_count_dict[flow])
@@ -377,29 +405,59 @@ def home(request):
             colors=['#7cb5ec']
         )
 
+
         for flow in (i[1] for i in nepal_sfpt):
-            if flow < 20:
+            if flow < 3:
                 flow = 0
-            elif flow >= 20 and flow < 43:
+            elif flow >= 3 and flow < 5:
                 flow = 0.25
-            elif flow >= 43 and flow < 120:
+            elif flow >= 5 and flow < 7:
                 flow = 0.5
-            elif flow >= 120 and flow < 214:
+            elif flow >= 7 and flow < 9:
                 flow = 0.75
-            elif flow >= 214 and flow < 330:
+            elif flow >= 9 and flow < 11:
                 flow = 1
-            elif flow >= 330 and flow < 436:
+            elif flow >= 11 and flow < 13:
                 flow = 1.25
-            elif flow >= 436 and flow < 567:
+            elif flow >= 13 and flow < 15:
                 flow = 1.5
-            elif flow >= 567 and flow < 712:
+            elif flow >= 15 and flow < 24:
                 flow = 1.75
-            elif flow >= 712 and flow < 872:
+            elif flow >= 24 and flow < 36:
                 flow = 2
-            elif flow >= 872 and flow < 1045:
-                flow = 2.25
-            elif flow >= 1045:
+            elif flow >= 36 and flow < 51:
                 flow = 2.5
+            elif flow >= 51 and flow < 64:
+                flow = 2.25
+            elif flow >= 64 and flow < 79:
+                flow = 2.75
+            elif flow >= 79:
+                flow = 3
+
+
+        # for flow in (i[1] for i in nepal_sfpt):
+        #     if flow < 20:
+        #         flow = 0
+        #     elif flow >= 20 and flow < 43:
+        #         flow = 0.25
+        #     elif flow >= 43 and flow < 120:
+        #         flow = 0.5
+        #     elif flow >= 120 and flow < 214:
+        #         flow = 0.75
+        #     elif flow >= 214 and flow < 330:
+        #         flow = 1
+        #     elif flow >= 330 and flow < 436:
+        #         flow = 1.25
+        #     elif flow >= 436 and flow < 567:
+        #         flow = 1.5
+        #     elif flow >= 567 and flow < 712:
+        #         flow = 1.75
+        #     elif flow >= 712 and flow < 872:
+        #         flow = 2
+        #     elif flow >= 872 and flow < 1045:
+        #         flow = 2.25
+        #     elif flow >= 1045:
+        #         flow = 2.5
 
             time_series_list_api.append(flow)
             # house_count_list.append(house_count_dict[flow])

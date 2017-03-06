@@ -32,16 +32,6 @@ var FloodMap =  new ol.source.TileWMS({
         crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
         });
 
-//var BuildingPoints =  new ol.source.TileWMS({
-//        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
-//
-//        params:{
-//            LAYERS:"3",
-////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-//        },
-//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-//        });
-
 var LandCover =  new ol.source.TileWMS({
         url:'http://geoserver.byu.edu/arcgis/services/Nepal_Kandra/kandra_' + range_input + '/MapServer/WmsServer?',
 
@@ -52,45 +42,13 @@ var LandCover =  new ol.source.TileWMS({
         crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
         });
 
-//var PopulationDensity =  new ol.source.TileWMS({
-//        url:'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + range_input + '/MapServer/WmsServer?',
-//
-//        params:{
-//            LAYERS:"2",
-////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-//        },
-//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-//        });
-
-//var BuildingPointsFlood =  new ol.source.TileWMS({
-//        url:'',
-//
-//        params:{
-//            LAYERS:"4",
-////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-//        },
-//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-//        });
-
 var flood = new ol.layer.Tile({
     source:FloodMap
     }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
-//var building = new ol.layer.Tile({
-//    source:BuildingPointsFlood
-//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-
 var land = new ol.layer.Tile({
     source:LandCover
     }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-
-//var population = new ol.layer.Tile({
-//    source:PopulationDensity
-//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-//
-//var buildingFlood = new ol.layer.Tile({
-//    source:BuildingPoints
-//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
 //Set opacity of layers
 flood.setOpacity(0.8);
