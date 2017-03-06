@@ -114,7 +114,7 @@ var map = new ol.Map({
 map.addControl(new ol.control.ZoomSlider());
 
 //This function is ran to set a listener to update the map size when the navigation pane is opened or closed
-(function () {
+$(function () {
     var target, observer, config;
     // select the target node
     target = $('#app-content-wrapper')[0];
@@ -130,8 +130,12 @@ map.addControl(new ol.control.ZoomSlider());
     observer.observe(target, config);
 }());
 
+
+
+
 //Here we set the styles and inital setting for the slider bar (https://jqueryui.com/slider/#steps)
 $(function() {
+
 
     $( "#slider" ).slider({
       value:0,
