@@ -136,7 +136,7 @@ $(function() {
     $( "#slider" ).slider({
       value:0,
       min: 0,
-      max: 5,
+      max: 2.5,
       step: 0.25,
       slide: function( event, ui ) {
         $( "#amount" ).val( ui.value );
@@ -201,8 +201,8 @@ $(function() {
             pdf.setTextColor("black");
 //            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
 //            pdf.text(25,162,house);
-            pdf.text(25,150,"Day of Severe Flood Warning: December 13, 2016");
-            pdf.text(25,156,"Forecast Start Date: Decmber 6, 2016");
+            pdf.text(25,150,"Day of Severe Flood Warning: March 13, 2017");
+            pdf.text(25,156,"Forecast Start Date: March 6, 2017");
             pdf.text(25,168,"Emergency Contact Information:")
             pdf.text(25,174,"CDO: +977 1-4248985")
             pdf.text(25,180,"Police: +977 1-4411210")

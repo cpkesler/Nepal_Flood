@@ -6,7 +6,6 @@ $(function() {
     var loc = $('#select_location').val();
     $('#select_forecast_location').val(loc);
     if ($('#select_location').val() == 'Rapti') {
-        console.log("f this shit");
         $('#forecast_date_start_macheli').parent().addClass('hidden');
         $('#forecast_date_start_kandra').parent().addClass('hidden');
         $('#forecast_date_start_rapti').parent().removeClass('hidden');
@@ -16,7 +15,7 @@ $(function() {
         $('#forecast_date_start_kandra').parent().addClass('hidden');
         $('#forecast_date_start_rapti').parent().addClass('hidden');
     }
-    else if ($('#forecast_range').val() === 'Kandra'){
+    else if ($('#select_location').val() === 'Kandra'){
         $('#forecast_date_start_macheli').parent().addClass('hidden');
         $('#forecast_date_start_kandra').parent().removeClass('hidden');
         $('#forecast_date_start_rapti').parent().addClass('hidden');

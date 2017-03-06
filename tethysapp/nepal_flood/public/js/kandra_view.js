@@ -27,15 +27,15 @@ var FloodMap =  new ol.source.TileWMS({
         crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
         });
 
-var BuildingPoints =  new ol.source.TileWMS({
-        url:'',
-
-        params:{
-            LAYERS:"3",
-//            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-        },
-        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-        });
+//var BuildingPoints =  new ol.source.TileWMS({
+//        url:'',
+//
+//        params:{
+//            LAYERS:"3",
+////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
+//        },
+//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
+//        });
 
 var LandCover =  new ol.source.TileWMS({
         url:'',
@@ -47,59 +47,59 @@ var LandCover =  new ol.source.TileWMS({
         crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
         });
 
-var PopulationDensity =  new ol.source.TileWMS({
-        url:'',
+//var PopulationDensity =  new ol.source.TileWMS({
+//        url:'',
+//
+//        params:{
+//            LAYERS:"2",
+////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
+//        },
+//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
+//        });
 
-        params:{
-            LAYERS:"2",
-//            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-        },
-        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-        });
-
-var BuildingPointsFlood =  new ol.source.TileWMS({
-        url:'',
-
-        params:{
-            LAYERS:"4",
-//            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
-        },
-        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
-        });
+//var BuildingPointsFlood =  new ol.source.TileWMS({
+//        url:'',
+//
+//        params:{
+//            LAYERS:"4",
+////            FORMAT:"image/png", //Not a necessary line, but maybe useful if needed later
+//        },
+//        crossOrigin: 'Anonymous' //This is necessary for CORS security in the browser
+//        });
 
 var flood = new ol.layer.Tile({
     source:FloodMap
     }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
-var building = new ol.layer.Tile({
-    source:BuildingPointsFlood
-    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
+//var building = new ol.layer.Tile({
+//    source:BuildingPointsFlood
+//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
 var land = new ol.layer.Tile({
     source:LandCover
     }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
-var population = new ol.layer.Tile({
-    source:PopulationDensity
-    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
-
-var buildingFlood = new ol.layer.Tile({
-    source:BuildingPoints
-    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
+//var population = new ol.layer.Tile({
+//    source:PopulationDensity
+//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
+//
+//var buildingFlood = new ol.layer.Tile({
+//    source:BuildingPoints
+//    }); //Thanks to http://jsfiddle.net/GFarkas/tr0s6uno/ for getting the layer working
 
 //Set opacity of layers
 flood.setOpacity(0.8);
-building.setOpacity(0.8);
-buildingFlood.setOpacity(0.8);
+//building.setOpacity(0.8);
+//buildingFlood.setOpacity(0.8);
 land.setOpacity(0.7);
-population.setOpacity(0.7);
+//population.setOpacity(0.7);
 
-sources = [FloodMap, BuildingPoints, LandCover, BuildingPointsFlood];
-layers = [baseLayer, flood, population, land, building, buildingFlood];
+sources = [FloodMap, LandCover];
+layers = [baseLayer, flood, land];
 
 //Establish the view area. Note the reprojection from lat long (EPSG:4326) to Web Mercator (EPSG:3857)
 var view = new ol.View({
-        center: [9111517, 3258918],
+        center: [9011517, 3319918],
         projection: projection,
         zoom: 12,
     })
@@ -142,20 +142,20 @@ $(function() {
         $( "#amount" ).val( ui.value );
         var decimal_value = ui.value.toString().split(".").join("")
         if (ui.value != 0) {
-            var url = 'http://geoserver.byu.edu/arcgis/services/Nepal_Western/Nepal_' + decimal_value + '/MapServer/WmsServer?';
+            var url = 'http://geoserver.byu.edu/arcgis/services/Nepal_Kandra/kandra_' + decimal_value + '/MapServer/WmsServer?';
            }
         else {
             var url = ''
         }
             FloodMap.setUrl(url);
-            BuildingPoints.setUrl(url);
+//            BuildingPoints.setUrl(url);
             LandCover.setUrl(url);
-            if($("#ch_population").is(':checked')){
-                PopulationDensity.setUrl(url);
-            }else{
-            population.setVisible(false);
-            };
-            BuildingPointsFlood.setUrl(url);
+//            if($("#ch_population").is(':checked')){
+//                PopulationDensity.setUrl(url);
+//            }else{
+//            population.setVisible(false);
+//            };
+//            BuildingPointsFlood.setUrl(url);
 //            $( "#house_count").text(house_count_dict[ui.value]);
 //            $( "#agriculture_count").text(agriculture_count_dict[ui.value]);
       }
@@ -198,10 +198,10 @@ $(function() {
 
             pdf.setFontSize(15);
             pdf.setTextColor("black");
-            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
-            pdf.text(25,162,house);
-            pdf.text(25,150,"Day of Severe Flood Warning: December 13, 2016");
-            pdf.text(25,156,"Forecast Start Date: Decmber 6, 2016");
+//            var house = "Number of Houses Effected: "+document.getElementById('house_count').innerHTML;
+//            pdf.text(25,162,house);
+            pdf.text(25,150,"Day of Severe Flood Warning: March 13, 2017");
+            pdf.text(25,156,"Forecast Start Date: March 6, 2017");
             pdf.text(25,168,"Emergency Contact Information:")
             pdf.text(25,174,"CDO: +977 1-4248985")
             pdf.text(25,180,"Police: +977 1-4411210")
