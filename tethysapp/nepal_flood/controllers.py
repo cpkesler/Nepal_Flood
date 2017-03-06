@@ -132,33 +132,34 @@ def home(request):
             }],
             colors=['#7cb5ec']
         )
+
         for flow in (i[1] for i in nepal_sfpt):
-            if flow < 3:
+            if flow < 5:
                 flow = 0
-            elif flow >= 3 and flow < 5:
+            elif flow >= 5 and flow < 25:
                 flow = 0.25
-            elif flow >= 5 and flow < 7:
+            elif flow >= 25 and flow < 46:
                 flow = 0.5
-            elif flow >= 7 and flow < 9:
+            elif flow >= 46 and flow < 96:
                 flow = 0.75
-            elif flow >= 9 and flow < 11:
+            elif flow >= 96 and flow < 250:
                 flow = 1
-            elif flow >= 11 and flow < 13:
+            elif flow >= 250 and flow < 460:
+                flow = 1.25
+            elif flow >= 460 and flow < 720:
                 flow = 1.5
-            elif flow >= 13 and flow < 15:
+            elif flow >= 720 and flow < 1191:
+                flow = 1.75
+            elif flow >= 1191 and flow < 1700:
                 flow = 2
-            elif flow >= 15 and flow < 17:
+            elif flow >= 1700 and flow < 2400:
+                flow = 2.25
+            elif flow >= 2400 and flow < 3150:
                 flow = 2.5
-            elif flow >= 17 and flow < 19:
+            elif flow >= 3150 and flow < 4050:
+                flow = 2.75
+            elif flow >= 4050:
                 flow = 3
-            elif flow >= 19 and flow < 21:
-                flow = 4
-            elif flow >= 21 and flow < 23:
-                flow = 4.25
-            elif flow >= 23 and flow < 25:
-                flow = 4.5
-            elif flow >= 25:
-                flow = 5
 
             time_series_list_api.append(flow)
             # house_count_list.append(house_count_dict[flow])
@@ -191,53 +192,53 @@ def home(request):
         forecast_location_initialize = 'Kandra'
         forecast_time_initialize = forecast_date_start_kandra
 
-        house_count_dict = {
-            0: 0,
-            0.25: 4,
-            0.5: 4,
-            0.75: 4,
-            1: 4,
-            1.25: 19,
-            1.5: 19,
-            1.75: 19,
-            2.0: 19,
-            2.25: 61,
-            2.5: 61,
-            2.75: 61,
-            3: 61,
-            3.25: 142,
-            3.5: 142,
-            3.75: 142,
-            4: 143,
-            4.25: 224,
-            4.5: 224,
-            4.75: 224,
-            5: 225
-        }
-
-        agriculture_count_dict = {
-            0: 0,
-            0.25: 6.3,
-            0.5: 6.3,
-            0.75: 6.3,
-            1: 6.3,
-            1.25: 16.3,
-            1.5: 16.3,
-            1.75: 16.3,
-            2.0: 16.3,
-            2.25: 28.2,
-            2.5: 28.2,
-            2.75: 28.2,
-            3: 28.3,
-            3.25: 38.6,
-            3.5: 38.6,
-            3.75: 38.6,
-            4: 38.7,
-            4.25: 46.9,
-            4.5: 46.9,
-            4.75: 47.0,
-            5: 47.1
-        }
+        # house_count_dict = {
+        #     0: 0,
+        #     0.25: 4,
+        #     0.5: 4,
+        #     0.75: 4,
+        #     1: 4,
+        #     1.25: 19,
+        #     1.5: 19,
+        #     1.75: 19,
+        #     2.0: 19,
+        #     2.25: 61,
+        #     2.5: 61,
+        #     2.75: 61,
+        #     3: 61,
+        #     3.25: 142,
+        #     3.5: 142,
+        #     3.75: 142,
+        #     4: 143,
+        #     4.25: 224,
+        #     4.5: 224,
+        #     4.75: 224,
+        #     5: 225
+        # }
+        #
+        # agriculture_count_dict = {
+        #     0: 0,
+        #     0.25: 6.3,
+        #     0.5: 6.3,
+        #     0.75: 6.3,
+        #     1: 6.3,
+        #     1.25: 16.3,
+        #     1.5: 16.3,
+        #     1.75: 16.3,
+        #     2.0: 16.3,
+        #     2.25: 28.2,
+        #     2.5: 28.2,
+        #     2.75: 28.2,
+        #     3: 28.3,
+        #     3.25: 38.6,
+        #     3.5: 38.6,
+        #     3.75: 38.6,
+        #     4: 38.7,
+        #     4.25: 46.9,
+        #     4.5: 46.9,
+        #     4.75: 47.0,
+        #     5: 47.1
+        # }
 
         # Plot AHPS flow data
         timeseries_plot = TimeSeries(
